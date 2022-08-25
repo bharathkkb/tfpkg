@@ -30,9 +30,9 @@ func NewOutput(name string, val string, opts ...OutputOptions) *Output {
 	return o
 }
 
-func (o Output) GetHCLBlock() (*hclwrite.Block, error) {
+func (o Output) RenderHCLBlock() (*hclwrite.Block, error) {
 	b := NewBlock(outputBlockType, o.name)
-	hb, err := b.GetHCLBlock()
+	hb, err := b.RenderHCLBlock()
 	if err != nil {
 		return nil, err
 	}

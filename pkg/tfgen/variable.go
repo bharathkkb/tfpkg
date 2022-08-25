@@ -38,13 +38,13 @@ func NewVariable(name string, opts ...VariableOptions) *Variable {
 	return v
 }
 
-func (v Variable) GetRef() string {
+func (v Variable) Ref() string {
 	return fmt.Sprintf("${var.%s}", v.name)
 }
 
-func (v Variable) GetHCLBlock() (*hclwrite.Block, error) {
+func (v Variable) RenderHCLBlock() (*hclwrite.Block, error) {
 	b := NewBlock(variableBlockType, v.name)
-	hb, err := b.GetHCLBlock()
+	hb, err := b.RenderHCLBlock()
 	if err != nil {
 		return nil, err
 	}

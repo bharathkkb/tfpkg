@@ -107,7 +107,7 @@ func generatePkgFromMod(pkgName, src, version string, m *tfconfig.Module) string
 	}
 	for opName := range m.Outputs {
 		refFuncName := fmt.Sprintf("Get%sRef", strcase.ToCamel(opName))
-		funcContent := jen.Return(jen.Id("m.GetRef").Call(jen.Lit(opName)))
+		funcContent := jen.Return(jen.Id("m.Ref").Call(jen.Lit(opName)))
 		f.Func().Params(jen.Id("m").Id("Mod")).Id(refFuncName).Call().String().Block(funcContent)
 		f.Empty()
 	}

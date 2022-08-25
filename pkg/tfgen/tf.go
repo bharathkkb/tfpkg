@@ -74,7 +74,7 @@ func (r *RootModule) Write(dir string) error {
 		f := hclwrite.NewEmptyFile()
 		rootBody := f.Body()
 		for _, b := range blocks {
-			h, err := b.GetHCLBlock()
+			h, err := b.RenderHCLBlock()
 			if err != nil {
 				return err
 			}

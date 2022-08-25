@@ -26,7 +26,7 @@ func NewProvider(name string, opts ...ProviderOptions) *Provider {
 	return p
 }
 
-func (p Provider) GetHCLBlock() (*hclwrite.Block, error) {
+func (p Provider) RenderHCLBlock() (*hclwrite.Block, error) {
 	b := NewBlock(providerBlockType, p.name)
-	return b.GetHCLBlock()
+	return b.RenderHCLBlock()
 }

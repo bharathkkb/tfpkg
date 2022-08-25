@@ -54,13 +54,13 @@ func (m *Module) AddAttribute(k string, v interface{}) {
 	m.attributes[k] = v
 }
 
-func (m *Module) GetRef(r string) string {
+func (m *Module) Ref(r string) string {
 	return fmt.Sprintf("${module.%s.%s}", m.name, r)
 }
 
-func (m Module) GetHCLBlock() (*hclwrite.Block, error) {
+func (m Module) RenderHCLBlock() (*hclwrite.Block, error) {
 	b := NewBlock(moduleBlockType, m.name)
-	hb, err := b.GetHCLBlock()
+	hb, err := b.RenderHCLBlock()
 	if err != nil {
 		return nil, err
 	}

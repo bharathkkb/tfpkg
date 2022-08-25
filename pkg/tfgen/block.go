@@ -9,7 +9,7 @@ type Block struct {
 }
 
 type HCLBlock interface {
-	GetHCLBlock() (*hclwrite.Block, error)
+	RenderHCLBlock() (*hclwrite.Block, error)
 }
 
 type BlockOptions func(p *Block)
@@ -22,7 +22,7 @@ func NewBlock(blockType, name string, opts ...BlockOptions) *Block {
 	return b
 }
 
-func (b *Block) GetHCLBlock() (*hclwrite.Block, error) {
+func (b *Block) RenderHCLBlock() (*hclwrite.Block, error) {
 	hb := hclwrite.NewBlock(b.blockType, []string{b.name})
 	return hb, nil
 }

@@ -20,9 +20,9 @@ func NewResource(resType, name string, opts ...ResourceOptions) *Resource {
 	return r
 }
 
-func (r Resource) GetHCLBlock() (*hclwrite.Block, error) {
+func (r Resource) RenderHCLBlock() (*hclwrite.Block, error) {
 	b := NewBlock(moduleBlockType, r.name)
-	hb, err := b.GetHCLBlock()
+	hb, err := b.RenderHCLBlock()
 	if err != nil {
 		return nil, err
 	}
