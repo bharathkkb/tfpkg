@@ -41,7 +41,11 @@ var rootCmd = &cobra.Command{
 	},
 	RunE: func(_ *cobra.Command, args []string) error {
 		if flags.tmpDir == "" {
-			flags.tmpDir = os.TempDir()
+			tmpDir, err := ioutil.TempDir("", "tfgen")
+			if err != nil {
+				return fmt.Errorf("unable to create tmp dir for module inspection: %w", err)
+			}
+			flags.tmpDir = tmpDir
 		}
 		return generateBlueprintPkg(flags.genDir, flags.tmpDir, args[0], flags.genModuleVersion)
 	},
